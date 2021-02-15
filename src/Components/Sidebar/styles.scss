@@ -1,5 +1,6 @@
 .sidebar {
   position: fixed;
+  padding-left: 28px;
   top: 0;
   bottom: 0;
   left: 0;
@@ -34,6 +35,15 @@
 }
 
 .logo {
-  margin: 0px 16px 0 28px;
+  margin: 0px 16px 0 0;
   vertical-align: sub;
+}
+
+.invite-block {
+  align-items: center;
+  position: fixed;
+  bottom: 5%;
+  flex-flow: column wrap;
+  color: #939393;
+  justify-content: center;
 }

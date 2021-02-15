@@ -1,20 +1,28 @@
 import React from "react";
 import {Nav} from "react-bootstrap";
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
+
+import { SidebarHeader } from '../SidebarHeader/SidebarHeader';
+
 import './styles.scss';
 import { ReactComponent as GiftLogo }from '../../assets/gift.svg'
 import { ReactComponent as DeskLogo }from '../../assets/folder.svg'
 import { ReactComponent as EventLogo }from '../../assets/calendar.svg'
 import { ReactComponent as BlogLogo }from '../../assets/pen.svg'
+import { ReactComponent as BowImg }from '../../assets/bow.svg'
 
 const Side = () => {
+  let history = useHistory();
    
   return (
-    <>
-      <Nav className="flex-column sidebar style-wrapper"
-      variant="tabs"
+    <div className="sidebar style-wrapper">
+      <SidebarHeader/>
+      <Nav className="flex-column"
       activeKey="/home"
-      onSelect={selectedKey => console.log(`selected ${selectedKey}`)}
+      onSelect={ selectedKey => {
+        console.log(`selected ${selectedKey}`);
+        history.push(`${selectedKey}`);
+        }}
       >
         <Nav.Item>
           <Nav.Link href="/home">
@@ -37,7 +45,11 @@ const Side = () => {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-    </>
+      <div className="invite-block">
+        <BowImg/>
+        <span>ПРИГЛАСИТЬ ДРУЗЕЙ</span>
+      </div>
+    </div>
   );};
 
   const Sidebar = withRouter(Side);
