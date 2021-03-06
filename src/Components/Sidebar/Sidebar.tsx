@@ -4,12 +4,13 @@ import { withRouter, useHistory } from 'react-router-dom';
 
 import { SidebarHeader } from '../SidebarHeader/SidebarHeader';
 
-import './styles.scss';
-import { ReactComponent as GiftLogo }from '../../assets/gift.svg'
-import { ReactComponent as DeskLogo }from '../../assets/folder.svg'
-import { ReactComponent as EventLogo }from '../../assets/calendar.svg'
-import { ReactComponent as BlogLogo }from '../../assets/pen.svg'
-import { ReactComponent as BowImg }from '../../assets/bow.svg'
+import './sidebar.scss';
+import { ReactComponent as GiftLogo }from '../../assets/gift.svg';
+import { ReactComponent as DeskLogo }from '../../assets/folder.svg';
+import { ReactComponent as EventLogo }from '../../assets/calendar.svg';
+import { ReactComponent as BlogLogo }from '../../assets/pen.svg';
+import { ReactComponent as BowLogo }from '../../assets/bow.svg';
+import { ReactComponent as InviteText }from '../../assets/invite.svg';
 
 const Side = () => {
   let history = useHistory();
@@ -46,8 +47,8 @@ const Side = () => {
         </Nav.Item>
       </Nav>
       <div className="invite-block">
-        <BowImg/>
-        <span>ПРИГЛАСИТЬ ДРУЗЕЙ</span>
+        <BowLogo className="bow-logo"/>
+        <InviteText/>
       </div>
     </div>
   );};

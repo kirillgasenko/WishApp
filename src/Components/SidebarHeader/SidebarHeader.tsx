@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactComponent as CloverImg }from '../../assets/clover.svg'
 import { ReactComponent as TextImg }from '../../assets/igiftyou.svg'
-import './styles.scss';
+import './sideheader.scss';
 
 export const SidebarHeader = () => {
   return(

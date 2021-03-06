@@ -1,0 +1,53 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 77vw;
+  left: 214px;
+  padding: 20px 70px;
+  height: 8vh;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  margin-left: 5%;
+  width: 150px;
+  height: 36px;
+  border: 2px solid grey;
+  border-radius: 18px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 28%;
+  text-align: left;
+  vertical-align: middle;
+  z-index: 1;
+  padding: 0 14px;
+}
+
+.search-input {
+  width: 78%;
+  height: 96%;
+  border: none;
+  border-radius: 18px;
+  outline-width: 0;
+  left: 0;
+  top: 0;
+  position: absolute;
+  padding-left: 30px;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: space-between;
+  min-width: 84px;
+}
+
+.my-wishes {
+  min-width: 160px;
+}

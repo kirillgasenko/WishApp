@@ -1,11 +1,11 @@
 .sidebar {
   position: fixed;
-  padding-left: 28px;
+  padding: 0 28px;
   top: 0;
   bottom: 0;
   left: 0;
   min-height: 100vh !important;
-  width: 214px;
+  width: 158px;
   z-index: 100;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
@@ -41,9 +41,15 @@
 
 .invite-block {
   align-items: center;
-  position: fixed;
+  position: absolute;
   bottom: 5%;
+  float: top;
+  display: flex;
   flex-flow: column wrap;
   color: #939393;
-  justify-content: center;
+  margin: 0 0 0 24px;
+}
+
+.bow-logo {
+  padding-bottom: 14px;
 }
