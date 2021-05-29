@@ -6,6 +6,7 @@ import { ReactComponent as MyWishesImage } from '../../assets/myWishes.svg';
 import { ReactComponent as SearchIcon } from '../../assets/searchIcon.svg';
 import { ReactComponent as DoorbellIcon } from '../../assets/doorbellIcon.svg';
 import { ReactComponent as ShareIcon } from '../../assets/shareIcon.svg';
+import exampleUserAvatar from '../../assets/exampleUserAvatar.png';
 
 import { UserAppearance } from '../UserAppearance/UserAppearance';
 
@@ -19,7 +20,7 @@ export const Header = function() {
         <SearchIcon className='search-icon'/>
         <input className='search-input' placeholder={SEARCH_PLACEHOLDER}/>
       </div>
-      <UserAppearance img="../../assets/exampleUserAvatar.png" email="kingvaneternal@gmail.com"/>
+      <UserAppearance imgSource={exampleUserAvatar} email="kingvaneternal@gmail.com"/>
       <div className="icon-row">
         <SearchIcon/>
         <DoorbellIcon/>

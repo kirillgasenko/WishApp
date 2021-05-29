@@ -1,9 +1,11 @@
 .user-appereance {
   display: flex;
+  align-items: center;
   vertical-align: middle;
   font-weight: 600;
 };
 
 .avatar {
   margin: 0 15px 0 12px;
+  border-radius: 50%! important;
 };

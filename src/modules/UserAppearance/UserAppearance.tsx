@@ -1,16 +1,16 @@
 import React from "react";
-import { Image } from "react-bootstrap";
+import Image from 'react-bootstrap/Image';
 import './appearance.scss';
 
 import { ReactComponent as UncoverIcon }from '../../assets/uncoverIcon.svg';
 
-export const UserAppearance = function(props: {img: string, email: string}) {
-  let { img, email } = props;
+export const UserAppearance = function(props: {imgSource: string, email: string}) {
+  const { imgSource, email } = props;
 
   return(
     <div className="user-appereance">
       <UncoverIcon/>
-      <Image src={img} roundedCircle className="avatar"/>
+      <Image src={imgSource} className="avatar "/>
       <span>@{email}</span>
     </div>
   );
