@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const LoginContainer = () => {
+export const AuthContainer = () => {
 
   
   return(

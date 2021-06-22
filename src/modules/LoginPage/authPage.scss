@@ -1,0 +1,23 @@
+form {
+  display: flex;
+  flex-direction: column;
+  
+  input {
+    width: 100%;
+    border: 1px solid #313C3E;
+    color: #313C3E;
+    border-radius: 0 50%;
+    padding: 15px;
+    margin-top: 19px;
+  }
+
+  button {
+    border-radius: 0 50%;
+    padding: 15px;
+    background-color: #F7F7F7;
+  }
+}
+
+.first {
+  margin-top: 0;
+}
