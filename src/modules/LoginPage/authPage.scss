@@ -1,23 +1,99 @@
 form {
   display: flex;
   flex-direction: column;
-  
+
   input {
     width: 100%;
-    border: 1px solid #313C3E;
-    color: #313C3E;
-    border-radius: 0 50%;
+    border: 1px solid #313c3e;
+    color: #313c3e;
+    opacity: 0.2;
+    border-radius: 25px;
     padding: 15px;
+    width: calc(100% - 2 * 15px);
     margin-top: 19px;
+    font-size: 17px;
+    outline: none;
+  }
+
+  .input-warning {
+    border-color: #ff6d4c;
   }
 
   button {
-    border-radius: 0 50%;
-    padding: 15px;
-    background-color: #F7F7F7;
+    margin-top: 43px;
+  }
+
+  .passQuestion {
+    margin-top: 7px;
+    text-align: end;
+  }
+
+  .close-button {
+    margin-top: 25px;
+  }
+
+  .error-message {
+    background-color: #ff6d4c;
+    color: #ff6d4c;
   }
 }
 
 .first {
   margin-top: 0;
+}
+
+.header-logo {
+  width: 140px;
+  min-height: 85px;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  line-height: 30px;
+  font-size: 21px;
+}
+
+$containerWidth: 300px;
+$containerHeight: 934px;
+.auth-box {
+  position: fixed;
+  background-color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  box-shadow: 0px 4px 35px rgba(227, 227, 227, 0.75);
+  border-radius: 45px;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  width: $containerWidth;
+  margin: 54px 130px;
+}
+
+.cross {
+  position: absolute;
+  top: 3.75%;
+  left: 91.28%;
+  font-size: 20px;
+  color: #313c3e;
+  transform: translate(0%, -50%);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 0 -43%;
+
+  .line {
+    background-color: #313c3e;
+    opacity: 0.25;
+    height: 1px;
+    width: 48%;
+  }
 }

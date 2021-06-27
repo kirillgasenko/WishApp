@@ -1,4 +1,10 @@
+@font-face {
+  font-family: ManRope;
+  src: url(./Manrope/static/Manrope-Regular.ttf);
+}
+
 .App {
+  font-family: ManRope;
   text-align: center;
   font-size: 14px;
 }

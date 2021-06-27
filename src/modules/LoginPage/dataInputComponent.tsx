@@ -1,6 +1,7 @@
 import React, { ChangeEventHandler, ReactElement, useState } from 'react';
 import { LOGIN_TYPE, SIGNUP_TYPE, NEW_PASS_TYPE, TO_EMAIL_TYPE, AuthFormTypes, FormConstructData, FormValues } from './constants';
 import './authPage.scss';
+import { Button } from './components/Button';
 
 const EMAIL_PH = "Email";
 const PASSWORD_PH = "Пароль";
@@ -70,6 +71,8 @@ function constructForm(constructData: FormConstructData, inputValues: FormValues
     }
   }();
 
+  const passQuestion = constructData.passwordRecovery;
+
   return(
     <form>
       {isError && <div>{constructData.errorMsg}</div>}
@@ -78,11 +81,11 @@ function constructForm(constructData: FormConstructData, inputValues: FormValues
           <input className={editOnce()} name={elem.name} placeholder={elem.placeholder || ''} onChange={changeInput}>{inputValues[elem.name]}</input>
         )
       }
-      {constructData.passwordRecovery && 
-        <text onClick={changeFrom}>{constructData.passwordRecovery}</text>
+      {passQuestion && 
+        <p className="passQuestion" onClick={changeFrom}>{constructData.passwordRecovery}</p>
       }
       {
-        <button onSubmit={submitData}>{constructData.submitButton}</button>
+        <Button onSubmit={submitData} className={passQuestion ? "close-button" : ""}>{constructData.submitButton}</Button>
       }
     </form>
   );
