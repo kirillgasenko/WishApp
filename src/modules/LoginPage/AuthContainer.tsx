@@ -2,9 +2,20 @@ import React from 'react';
 import { useState } from 'react';
 import { AuthFormTypes, LOGIN_TYPE } from './constants';
 import { DataInputComponent } from './DataInputComponent';
+import { LogFooter } from './LogFooter';
 import { LogHeader } from './LogHeader';
 
 const HEADER_TEXT = "Организовывайте свои идеи подарков и мероприятий";
+
+const FooterInfo = () => {
+  return(
+    <div>
+      <p>Продолжая вы принимаете условия I GIFT YOU:</p>
+      <b>Условия предоставления услуг и Политика конфиденциальности.</b>
+      <p>Уже есть аккаунт? <a onClick={() => 1}>Войти</a>.</p>
+    </div>
+  );
+}
 
 const Divider = () =>
   <div className="divider">
@@ -25,8 +36,9 @@ export const AuthContainer = () => {
           <DataInputComponent type={boxType}/>
         </div>
         <Divider/>
-        <div></div>
+        <LogFooter/>
       </div>
+      <FooterInfo/>
     </div>
   )
 }

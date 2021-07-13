@@ -8,7 +8,7 @@ const PASSWORD_PH = "Пароль";
 const NEW_PASSWORD_PH = "Введите новый пароль";
 const REPEAT_NEW_PASSWORD_PH = "Повторите пароль";
 
-const LOGIN = "Войти";
+const LOGIN = "ВОЙТИ";
 const CONTINUE = "ПРОДОЛЖИТЬ";
 const SEND_INSTRUCTION = "Отправить инструкцию";
 const CHANGE_PASSWORD = "ИЗМЕНИТЬ ПАРОЛЬ";
@@ -82,7 +82,9 @@ function constructForm(constructData: FormConstructData, inputValues: FormValues
         )
       }
       {passQuestion && 
-        <p className="passQuestion" onClick={changeFrom}>{constructData.passwordRecovery}</p>
+        <div className="passQuestion">
+          <div onClick={changeFrom}>{constructData.passwordRecovery}</div>
+        </div>
       }
       {
         <Button onSubmit={submitData} className={passQuestion ? "close-button" : ""}>{constructData.submitButton}</Button>

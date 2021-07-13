@@ -8,8 +8,8 @@ export const LogHeader = ({ header, additional }: { header: string, additional?:
   return(
     <div className="header-container">
       <HeadSVG className="header-logo"/>
-      <h3>{header}</h3>
-      <h4>{additional}</h4>
+      <h4>{header}</h4>
+      <h5>{additional}</h5>
     </div>
   );
 }
