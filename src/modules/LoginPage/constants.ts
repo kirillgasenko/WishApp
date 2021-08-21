@@ -1,11 +1,11 @@
 
-export const LOGIN_TYPE = "SIGNIN";
-export const SIGNUP_TYPE = "SIGNUP";
+export const LOG_IN_TYPE = "SIGNIN";
+export const SIGN_UP_TYPE = "SIGNUP";
 export const TO_EMAIL_TYPE = "EMAIL";
 export const NEW_PASS_TYPE = "NEWPASSWORD";
 
 
-export type AuthFormTypes =  typeof LOGIN_TYPE | typeof SIGNUP_TYPE | typeof TO_EMAIL_TYPE | typeof NEW_PASS_TYPE;
+export type AuthFormTypes =  typeof LOG_IN_TYPE | typeof SIGN_UP_TYPE | typeof TO_EMAIL_TYPE | typeof NEW_PASS_TYPE;
 export type FormInputsData = {
   name: string,
   placeholder?: string

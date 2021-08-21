@@ -1,7 +1,8 @@
 import React, { ChangeEventHandler, ReactElement, useState } from 'react';
-import { LOGIN_TYPE, SIGNUP_TYPE, NEW_PASS_TYPE, TO_EMAIL_TYPE, AuthFormTypes, FormConstructData, FormValues } from './constants';
+import { LOG_IN_TYPE, SIGN_UP_TYPE, NEW_PASS_TYPE, TO_EMAIL_TYPE, AuthFormTypes, FormConstructData, FormValues } from './constants';
 import './authPage.scss';
 import { Button } from './components/Button';
+import { useEffect } from 'react';
 
 const EMAIL_PH = "Email";
 const PASSWORD_PH = "Пароль";
@@ -20,7 +21,7 @@ const ERROR_UNMATCH = "Пароли не совпадают";
 
 function selectConstructObject(type: AuthFormTypes): FormConstructData {
   switch(type) {
-    case LOGIN_TYPE: 
+    case LOG_IN_TYPE: 
       return {
         inputs: [
           { name: 'email', placeholder: EMAIL_PH },
@@ -30,7 +31,7 @@ function selectConstructObject(type: AuthFormTypes): FormConstructData {
         passwordRecovery: RECOVERY_HELP,
         errorMsg: ERROR_LOGIN_MESSAGE
       }
-    case SIGNUP_TYPE:
+    case SIGN_UP_TYPE:
       return {
         inputs: [
           { name: 'email', placeholder: EMAIL_PH },
@@ -59,7 +60,7 @@ function selectConstructObject(type: AuthFormTypes): FormConstructData {
 }
 
 function constructForm(constructData: FormConstructData, inputValues: FormValues, changeInput: ChangeEventHandler, submitData: any, isError?: boolean, changeFrom?: any) {
-  const editOnce = function() {
+  const editOnce = function() { //TODO - change function to css define
     let isFirst = true;
 
     return () => {
@@ -73,21 +74,23 @@ function constructForm(constructData: FormConstructData, inputValues: FormValues
 
   const passQuestion = constructData.passwordRecovery;
 
+  const checkInputEmptiness = Object.values(inputValues).length >= constructData.inputs.length && Object.values(inputValues).every(value => !!value);
+
   return(
     <form>
       {isError && <div>{constructData.errorMsg}</div>}
       {
         constructData.inputs.map(elem => 
-          <input className={editOnce()} name={elem.name} placeholder={elem.placeholder || ''} onChange={changeInput}>{inputValues[elem.name]}</input>
+          <input className={editOnce()} name={elem.name} placeholder={elem.placeholder || ''} onChange={changeInput} />
         )
       }
       {passQuestion && 
         <div className="passQuestion">
-          <div onClick={changeFrom}>{constructData.passwordRecovery}</div>
+          <div className="bold" onClick={changeFrom}>{constructData.passwordRecovery}</div>
         </div>
       }
       {
-        <Button onSubmit={submitData} className={passQuestion ? "close-button" : ""}>{constructData.submitButton}</Button>
+        <Button onSubmit={submitData} isDisabled={!checkInputEmptiness} className={passQuestion ? "close-button" : ""}>{constructData.submitButton}</Button>
       }
     </form>
   );
@@ -96,12 +99,12 @@ function constructForm(constructData: FormConstructData, inputValues: FormValues
 export const DataInputComponent: React.FC<{type: AuthFormTypes}> = ({type}) => {
   const [formData, setFormData] = useState({});
   const constructObject = selectConstructObject(type);
+  const isError = false;
 
-  const onSubmit = (formData: any) => {
+  function onSubmit(formData: any) {
     console.log(formData);
     //get request based on type
   }
-  const isError = false;
 
   function changeFormData(event: any) {
     const name = event.target.name;
@@ -112,6 +115,12 @@ export const DataInputComponent: React.FC<{type: AuthFormTypes}> = ({type}) => {
       [name]: value
     });
   };
+
+  useEffect(() => {
+    const initial: FormValues = {};
+    constructObject.inputs.forEach(function(this: { [key: string]: string }, item) { this[item.name] = ''; }, {});
+    setFormData(initial);
+  }, [type]);
   
   return constructForm(constructObject, formData, changeFormData, onSubmit, isError);
 }

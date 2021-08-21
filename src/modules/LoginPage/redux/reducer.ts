@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../store';
-import { AuthFormTypes, LOGIN_TYPE } from '../constants';
+import { AuthFormTypes, LOG_IN_TYPE } from '../constants';
 
 interface AuthState {
   type: AuthFormTypes,
 };
 
 const initialState: AuthState = {
-  type: LOGIN_TYPE
+  type: LOG_IN_TYPE
 }
 
 export const authSlice = createSlice({

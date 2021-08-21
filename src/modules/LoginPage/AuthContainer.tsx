@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { AuthFormTypes, LOGIN_TYPE } from './constants';
+import { AuthFormTypes, LOG_IN_TYPE, SIGN_UP_TYPE } from './constants';
 import { DataInputComponent } from './DataInputComponent';
 import { LogFooter } from './LogFooter';
 import { LogHeader } from './LogHeader';
@@ -25,7 +25,8 @@ const Divider = () =>
   </div>
 
 export const AuthContainer = () => {
-  const [boxType, setBoxType] = useState<AuthFormTypes>(LOGIN_TYPE);
+  const [boxType, setBoxType] = useState<AuthFormTypes>(LOG_IN_TYPE);
+  const isLogging = boxType === LOG_IN_TYPE || boxType === SIGN_UP_TYPE;
   
   return(
     <div className='auth-box'>
@@ -36,9 +37,9 @@ export const AuthContainer = () => {
           <DataInputComponent type={boxType}/>
         </div>
         <Divider/>
-        <LogFooter/>
+        {isLogging && <LogFooter/>}
       </div>
-      <FooterInfo/>
+      {isLogging && <FooterInfo/>}
     </div>
   )
 }
