@@ -13,6 +13,7 @@ export type FormInputsData = {
 export type FormConstructData = {
   inputs: FormInputsData[],
   submitButton: string,
+  header: string | string[],
   buttons?: string[],
   errorMsg?: string,
   passwordRecovery?: string

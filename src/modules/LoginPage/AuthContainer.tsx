@@ -1,18 +1,19 @@
 import React from 'react';
-import { useState } from 'react';
 import { AuthFormTypes, LOG_IN_TYPE, SIGN_UP_TYPE } from './constants';
 import { DataInputComponent } from './DataInputComponent';
 import { LogFooter } from './LogFooter';
-import { LogHeader } from './LogHeader';
+import { useAuth } from './redux/selectors';
 
-const HEADER_TEXT = "Организовывайте свои идеи подарков и мероприятий";
+const FooterInfo = ({ type }: { type: AuthFormTypes }) => {
+  const Question = () => type === LOG_IN_TYPE ? 
+    (<p>Уже есть аккаунт? <span style={{color: "#5C50E0"}}>Войти</span>.</p>) :
+    (<p>Еще не зарегистрировались на I GIFT YOU? <br/><span style={{color: "#5C50E0"}}>Регистрация</span>.</p>)
 
-const FooterInfo = () => {
   return(
-    <div>
+    <div className="footer">
       <p>Продолжая вы принимаете условия I GIFT YOU:</p>
       <b>Условия предоставления услуг и Политика конфиденциальности.</b>
-      <p>Уже есть аккаунт? <a onClick={() => 1}>Войти</a>.</p>
+      <Question />
     </div>
   );
 }
@@ -25,7 +26,7 @@ const Divider = () =>
   </div>
 
 export const AuthContainer = () => {
-  const [boxType, setBoxType] = useState<AuthFormTypes>(LOG_IN_TYPE);
+  const { type: boxType } = useAuth();
   const isLogging = boxType === LOG_IN_TYPE || boxType === SIGN_UP_TYPE;
   
   return(
@@ -33,13 +34,12 @@ export const AuthContainer = () => {
       <span className="cross">×</span>
       <div className='auth-container'>
         <div>
-          <LogHeader header={HEADER_TEXT}/>
           <DataInputComponent type={boxType}/>
         </div>
-        <Divider/>
+        {isLogging && <Divider/>}
         {isLogging && <LogFooter/>}
       </div>
-      {isLogging && <FooterInfo/>}
+      {isLogging && <FooterInfo type={boxType}/>}
     </div>
   )
 }

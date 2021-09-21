@@ -45,9 +45,17 @@ form {
     margin-top: 25px;
   }
 
+  .error {
+    color: #FF6D4C;
+    border-color: #FF6D4C;
+  }
+
   .error-message {
-    background-color: #ff6d4c;
-    color: #ff6d4c;
+    padding: 10px 0px;
+    background-color: rgba(255, 109, 76, 0.15);
+    border-radius: 10px;
+    color: #FF6D4C;
+    margin-bottom: 30px;
   }
 }
 
@@ -73,6 +81,16 @@ button {
   line-height: 30px;
   font-size: 21px;
   cursor: default !important;
+  margin-bottom: 42px;
+
+  h4 {
+    margin-bottom: 0px;
+  }
+
+
+  .additional {
+    font-size: 16px;
+  }
 }
 
 $containerWidth: 300px;
@@ -130,4 +148,8 @@ $containerHeight: 934px;
   flex-direction: column;
   justify-content: space-between;
   height: 200px;
+}
+
+.footer {
+  margin-bottom: 20px;
 }
