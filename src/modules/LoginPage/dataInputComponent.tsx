@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler, ReactElement, useState } from 'react';
-import { LOG_IN_TYPE, SIGN_UP_TYPE, NEW_PASS_TYPE, TO_EMAIL_TYPE, AuthFormTypes, FormConstructData, FormValues } from './constants';
+import { LOG_IN_TYPE, SIGN_UP_TYPE, NEW_PASS_TYPE, TO_EMAIL_TYPE, AuthFormTypes, FormConstructData, FormValues, INST_SENT_TYPE } from './constants';
 import './authPage.scss';
 import { Button } from './components/Button';
 import { useEffect } from 'react';
@@ -67,12 +67,23 @@ function selectConstructObject(type: AuthFormTypes): FormConstructData {
         ],
         submitButton: CHANGE_PASSWORD,
         errorMsg: ERROR_UNMATCH,
-        header: INSTR_HEADER,
+        header: NEW_PASS_HEADER,
+      }
+    default: 
+      return {
+        inputs: [
+          { name: 'email', placeholder: EMAIL_PH },
+          { name: 'password', placeholder: PASSWORD_PH }
+        ],
+        submitButton: LOGIN,
+        passwordRecovery: RECOVERY_HELP,
+        errorMsg: ERROR_LOGIN_MESSAGE,
+        header: LOG_HEADER,
       }
   }
 }
 
-function constructForm(constructData: FormConstructData, inputValues: FormValues, changeInput: ChangeEventHandler, submitData: any, isError?: boolean, changeForm?: any) {
+function constructForm(constructData: FormConstructData, inputValues: FormValues, changeInput: ChangeEventHandler, onSubmit: any, isError?: boolean | string, changeForm?: any) {
   const editOnce = function() { //TODO - change function to css define
     let isFirst = true;
 
@@ -94,7 +105,7 @@ function constructForm(constructData: FormConstructData, inputValues: FormValues
       {isError && <div className="error-message">{constructData.errorMsg}</div>}
       {
         constructData.inputs.map(elem => 
-          <input className={editOnce()} name={elem.name} placeholder={elem.placeholder || ''} onChange={changeInput} />
+          <input className={`${editOnce()} ${isError && 'input-warning'}`} name={elem.name} placeholder={elem.placeholder || ''} onChange={changeInput} />
         )
       }
       {passQuestion && 
@@ -103,20 +114,35 @@ function constructForm(constructData: FormConstructData, inputValues: FormValues
         </div>
       }
       {
-        <Button onSubmit={submitData} isDisabled={!checkInputEmptiness} className={passQuestion ? "close-button" : ""}>{constructData.submitButton}</Button>
+        <Button onClick={onSubmit} isDisabled={!checkInputEmptiness} className={passQuestion ? "close-button" : ""}>{constructData.submitButton}</Button>
       }
     </form>
   );
 }
 
-export const DataInputComponent: React.FC<{type: AuthFormTypes}> = ({type}) => {
+const SendDescription: React.FC<{email?: string}> = ({email}) => {
+  return (
+    <>
+      <LogHeader header={INSTR_HEADER}/>
+      <p>Вы получите наше письмо в течение 5 минут</p>
+      <p>{email}</p>
+    </>
+  );
+}
+
+export const DataInputComponent = () => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({});
+  const { error: errorMsg, type } = useAuth();
+
+  const [formData, setFormData] = useState<any>({});
   const constructObject = selectConstructObject(type);
-  const isError = !!useAuth().error;
+  const [isError, setIsError] = useState(errorMsg);
 
   function onSubmit(formData: any) {
     console.log(formData);
+    if(type === TO_EMAIL_TYPE) {
+      dispatch(changeBoxType(INST_SENT_TYPE));
+    }
     //get request based on type
   }
 
@@ -128,6 +154,7 @@ export const DataInputComponent: React.FC<{type: AuthFormTypes}> = ({type}) => {
       ...formData,
       [name]: value
     });
+    setIsError('');
   };
 
   function changeForm() {
@@ -146,15 +173,26 @@ export const DataInputComponent: React.FC<{type: AuthFormTypes}> = ({type}) => {
   }();
 
   useEffect(() => {
+    setIsError(errorMsg);
+    if(!constructObject?.errorMsg) {
+      constructObject.errorMsg = errorMsg;
+    }
+  }, [errorMsg])
+
+  useEffect(() => {
     const initial: FormValues = {};
     constructObject.inputs.forEach(function(this: { [key: string]: string }, item) { this[item.name] = ''; }, {});
     setFormData(initial);
   }, [type]);
   
+  if(type === INST_SENT_TYPE) {
+    return <SendDescription email={formData?.email}/>
+  }
+
   return (
     <>
       <LogHeader {...headerProps} />
-      {constructForm(constructObject, formData, changeFormData, onSubmit, isError, changeForm)}
+      {constructForm(constructObject, formData, changeFormData, () => onSubmit(formData), isError, changeForm)}
     </>
   );
 }

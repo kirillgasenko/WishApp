@@ -13,7 +13,7 @@ interface AuthState {
 };
 
 const initialState: AuthState = {
-  type: "SIGNIN",
+  type: "EMAIL",
   login: {},
   error: 'asdasd',
 }
