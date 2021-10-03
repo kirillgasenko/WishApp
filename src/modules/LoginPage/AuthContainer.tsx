@@ -1,18 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { AuthFormTypes, LOG_IN_TYPE, SIGN_UP_TYPE } from './constants';
 import { DataInputComponent } from './DataInputComponent';
 import { LogFooter } from './LogFooter';
+import { changeBoxType } from './redux/reducer';
 import { useAuth } from './redux/selectors';
 
 const FooterInfo = ({ type }: { type: AuthFormTypes }) => {
+  const dispatch = useDispatch();
   const Question = () => type === LOG_IN_TYPE ? 
-    (<p>Уже есть аккаунт? <span style={{color: "#5C50E0"}}>Войти</span>.</p>) :
-    (<p>Еще не зарегистрировались на I GIFT YOU? <br/><span style={{color: "#5C50E0"}}>Регистрация</span>.</p>)
+    (<p>Еще не зарегистрировались на I GIFT YOU? <br/><span onClick={() => dispatch(changeBoxType(SIGN_UP_TYPE))} className="footer-link">Регистрация</span>.</p>) :
+    (<p>Уже есть аккаунт? <span onClick={() => dispatch(changeBoxType(LOG_IN_TYPE))} className="footer-link">Войти</span>.</p>)
 
   return(
     <div className="footer">
-      <p>Продолжая вы принимаете условия I GIFT YOU:</p>
-      <b>Условия предоставления услуг и Политика конфиденциальности.</b>
+      <p>Продолжая вы принимаете условия I GIFT YOU:<br/>
+      <b>Условия предоставления услуг и Политика конфиденциальности.</b></p>
       <Question />
     </div>
   );

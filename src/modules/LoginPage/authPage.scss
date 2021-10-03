@@ -96,6 +96,7 @@ button {
 $containerWidth: 300px;
 $containerHeight: 934px;
 .auth-box {
+  max-width: 440px;
   position: absolute;
   background-color: #ffffff;
   top: 50%;
@@ -109,7 +110,7 @@ $containerHeight: 934px;
   display: flex;
   flex-direction: column;
   width: $containerWidth;
-  margin: 40px 90px;
+  margin: 30px 70px;
 }
 
 .cross {
@@ -122,15 +123,16 @@ $containerHeight: 934px;
 }
 
 .divider {
+  width: 146%;
   display: flex;
   align-items: center;
-  margin: 35px -30% 0;
+  margin: 35px -23% 0;
 
   .line {
     background-color: #313c3e;
     opacity: 0.25;
     height: 1px;
-    width: 48%;
+    width: 44%;
   }
 
   .middle-text {
@@ -152,4 +154,11 @@ $containerHeight: 934px;
 
 .footer {
   margin-bottom: 20px;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.footer-link {
+  color:#5C50E0;
+  cursor: pointer;
 }

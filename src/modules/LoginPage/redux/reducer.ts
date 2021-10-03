@@ -22,7 +22,7 @@ export const authSlice = createSlice({
   name: 'authentication',
   initialState,
   reducers: {
-    changeFormType: (state, action: PayloadAction<AuthFormTypes>) => {
+    changeBoxType: (state, action: PayloadAction<AuthFormTypes>) => {
       state.type = action.payload
     },
     saveLoginResult: (state, action: PayloadAction<LogResponse>) => {
@@ -34,7 +34,7 @@ export const authSlice = createSlice({
   }
 });
 
-export const { changeFormType: changeType, saveLoginResult, clearForm } = authSlice.actions;
+export const { changeBoxType, saveLoginResult, clearForm } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
 

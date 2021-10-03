@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { LogHeader } from './LogHeader';
 import { useAuth } from './redux/selectors';
 import { useDispatch } from 'react-redux';
-import { changeType } from './redux/reducer';
+import { changeBoxType } from './redux/reducer';
 
 const LOG_HEADER = "Организовывайте свои идеи подарков и мероприятий";
 const FORGET_HEADER = ["Забыли пароль?", "Такое случается с лучшими из нас"];
@@ -131,7 +131,7 @@ export const DataInputComponent: React.FC<{type: AuthFormTypes}> = ({type}) => {
   };
 
   function changeForm() {
-    dispatch(changeType(TO_EMAIL_TYPE))
+    dispatch(changeBoxType(TO_EMAIL_TYPE))
   }
 
   const headerProps = function() {
