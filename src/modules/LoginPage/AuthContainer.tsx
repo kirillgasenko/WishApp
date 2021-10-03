@@ -14,8 +14,6 @@ const FooterInfo = ({ type }: { type: AuthFormTypes }) => {
 
   return(
     <div className="footer">
-      <p>Продолжая вы принимаете условия I GIFT YOU:<br/>
-      <b>Условия предоставления услуг и Политика конфиденциальности.</b></p>
       <Question />
     </div>
   );

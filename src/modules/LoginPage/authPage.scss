@@ -20,6 +20,7 @@ form {
 
   .input-warning {
     border-color: #ff6d4c;
+    color: #ff6d4c;
   }
 
   button {
@@ -55,7 +56,8 @@ form {
     background-color: rgba(255, 109, 76, 0.15);
     border-radius: 10px;
     color: #FF6D4C;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    transition: display 1s;
   }
 }
 
@@ -81,7 +83,7 @@ button {
   line-height: 30px;
   font-size: 21px;
   cursor: default !important;
-  margin-bottom: 42px;
+  margin-bottom: 20px;
 
   h4 {
     margin-bottom: 0px;
@@ -96,6 +98,7 @@ button {
 $containerWidth: 300px;
 $containerHeight: 934px;
 .auth-box {
+  max-height: 900px;
   max-width: 440px;
   position: absolute;
   background-color: #ffffff;
@@ -110,7 +113,7 @@ $containerHeight: 934px;
   display: flex;
   flex-direction: column;
   width: $containerWidth;
-  margin: 30px 70px;
+  margin: 0px 70px 30px;
 }
 
 .cross {
