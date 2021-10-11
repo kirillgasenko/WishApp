@@ -51,7 +51,7 @@ export const AuthContainer = () => {
         {isLogging && <Divider />}
         {isLogging && <LogFooter />}
       </div>
-      {isLogging || boxType === INST_SENT_TYPE && <FooterInfo type={boxType}/>}
+      {(isLogging || boxType === INST_SENT_TYPE) && <FooterInfo type={boxType}/>}
     </div>
   )
 }
