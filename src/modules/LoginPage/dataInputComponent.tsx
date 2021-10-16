@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, ReactElement, useState } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import {
   LOG_IN_TYPE,
   SIGN_UP_TYPE,
@@ -15,9 +15,13 @@ import { useEffect } from "react";
 import { LogHeader } from "./LogHeader";
 import { useAuth } from "./redux/selectors";
 import { useDispatch } from "react-redux";
-import { changeBoxType } from "./redux/reducer";
-import { logUser, regUser, requestPassword } from "./redux/middleware";
-import { passwordRequest, updateRequest } from "./redux/loginApi";
+import { changeBoxType, saveError } from "./redux/reducer";
+import {
+  logUser,
+  regUser,
+  requestNewPass,
+  updatePassword,
+} from "./redux/middleware";
 
 const LOG_HEADER = "Организовывайте свои идеи подарков и мероприятий";
 const FORGET_HEADER = ["Забыли пароль?", "Такое случается с лучшими из нас"];
@@ -102,7 +106,7 @@ function constructForm(
   inputValues: FormValues,
   changeInput: ChangeEventHandler,
   onSubmit: any,
-  isError?: boolean | string,
+  error?: boolean | string,
   changeForm?: any
 ) {
   const editOnce = (function () {
@@ -126,10 +130,12 @@ function constructForm(
 
   return (
     <form>
-      {isError && <div className="error-message">{constructData.errorMsg}</div>}
+      {error && (
+        <div className="error-message">{constructData.errorMsg || error}</div>
+      )}
       {constructData.inputs.map((elem) => (
         <input
-          className={`${editOnce()} ${isError && "input-warning"}`}
+          className={`${editOnce()} ${error && "input-warning"}`}
           name={elem.name}
           placeholder={elem.placeholder || ""}
           onChange={changeInput}
@@ -156,11 +162,24 @@ function constructForm(
 }
 
 const SendDescription: React.FC<{ email?: string }> = ({ email }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <LogHeader header={INSTR_HEADER} />
       <p>Вы получите наше письмо в течение 5 минут</p>
-      <p>{email}</p>
+      <p style={{ fontWeight: 600 }}>{email}</p>
+      <p>
+        {"Не приходит письмо? Убедитесь, что оно не попало в папку спам. "}
+        <span
+          onClick={() => {
+            dispatch(changeBoxType(INST_SENT_TYPE));
+            dispatch(requestNewPass(email));
+          }}
+          className="footer-link"
+        >
+          Отправить еще раз
+        </span>
+      </p>
     </>
   );
 };
@@ -171,13 +190,9 @@ export const DataInputComponent = () => {
 
   const [formData, setFormData] = useState<any>({});
   const constructObject = selectConstructObject(type);
-  const [isError, setIsError] = useState(errorMsg);
 
   function onSubmit(formData: any) {
     console.log(formData);
-    if (type === TO_EMAIL_TYPE) {
-      dispatch(changeBoxType(INST_SENT_TYPE));
-    }
     switch (type) {
       case LOG_IN_TYPE: {
         dispatch(logUser(formData));
@@ -188,11 +203,12 @@ export const DataInputComponent = () => {
         break;
       }
       case TO_EMAIL_TYPE: {
-        dispatch(requestPassword(formData));
+        dispatch(requestNewPass(formData));
+        dispatch(changeBoxType(INST_SENT_TYPE));
         break;
       }
       case NEW_PASS_TYPE: {
-        dispatch(updateRequest());
+        dispatch(updatePassword());
         break;
       }
     }
@@ -206,7 +222,7 @@ export const DataInputComponent = () => {
       ...formData,
       [name]: value,
     });
-    setIsError("");
+    dispatch(saveError(""));
   }
 
   function changeForm() {
@@ -224,25 +240,10 @@ export const DataInputComponent = () => {
     return { header } as { header: string };
   })();
 
-  useEffect(() => {
-    console.log(errorMsg);
-    setIsError(errorMsg);
-    if (!constructObject?.errorMsg) {
-      constructObject.errorMsg = errorMsg;
-    }
-  }, [errorMsg]);
-
-  useEffect(() => {
-    const initial: FormValues = {};
-    constructObject.inputs.forEach(function (
-      this: { [key: string]: string },
-      item
-    ) {
-      this[item.name] = "";
-    },
-    {});
-    setFormData(initial);
-  }, [type]);
+  // useEffect(() => {
+  //   const initial: FormValues = {};
+  //   setFormData(initial);
+  // }, [type]);
 
   if (type === INST_SENT_TYPE) {
     return <SendDescription email={formData?.email} />;
@@ -256,7 +257,7 @@ export const DataInputComponent = () => {
         formData,
         changeFormData,
         () => onSubmit(formData),
-        isError,
+        errorMsg,
         changeForm
       )}
     </>

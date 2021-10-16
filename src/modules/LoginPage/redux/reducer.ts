@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../../store";
-import {
-  AuthFormTypes,
-  LOG_IN_TYPE,
-  NEW_PASS_TYPE,
-  TO_EMAIL_TYPE,
-} from "../constants";
+import { AuthFormTypes, TO_EMAIL_TYPE } from "../constants";
 
 type LogResponse = {
   [key: string]: string | number | undefined;
@@ -18,7 +13,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  type: TO_EMAIL_TYPE,
+  type: "LOGIN",
   login: {},
   error: "",
 };

@@ -1,10 +1,12 @@
-import { AnyAction } from "@reduxjs/toolkit";
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootStateOrAny } from "react-redux";
 import { ThunkAction } from "redux-thunk";
+import { commonThunk } from "../../../utils/apiHelpers";
+import { AnyThunkDispatch } from "../../../utils/types";
 import { INST_SENT_TYPE, LOG_IN_TYPE } from "../constants";
 import {
   logRequest,
-  passwordRequest,
+  newPassRequest,
   regRequest,
   updateRequest,
 } from "./loginApi";
@@ -14,7 +16,6 @@ export const logUser = (
   body: any
 ): ThunkAction<void, RootStateOrAny, any, AnyAction> => async (dispatch) => {
   const res = await logRequest(body);
-  console.log(res);
 
   if (res?.error) {
     dispatch(saveError(res.message));
@@ -35,28 +36,12 @@ export const regUser = (
   dispatch(saveLoginResult(res));
 };
 
-export const requestPassword = (
-  body: any
-): ThunkAction<void, RootStateOrAny, any, AnyAction> => async (dispatch) => {
-  const res = await passwordRequest(body);
+export const requestNewPass = (body: any) =>
+  commonThunk(
+    () => newPassRequest(body),
+    () => changeBoxType(INST_SENT_TYPE),
+    (res: any) => saveError(res.message)
+  );
 
-  if (res?.error) {
-    dispatch(saveError(res.message));
-  }
-
-  dispatch(changeBoxType(INST_SENT_TYPE));
-};
-
-export const updatePassword = (): ThunkAction<
-  void,
-  RootStateOrAny,
-  any,
-  AnyAction
-> => async (dispatch) => {
-  const res = await updateRequest();
-
-  if (res?.error) {
-    dispatch(saveError(res.message));
-  }
-  console.log("success");
-};
+export const updatePassword = () =>
+  commonThunk(updateRequest, (res: any) => saveError(res.message));

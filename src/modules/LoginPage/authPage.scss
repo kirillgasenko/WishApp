@@ -31,12 +31,12 @@ form {
     margin-top: 7px;
     display: flex;
     justify-content: flex-end;
-    
+
     * {
       right: 0;
       cursor: pointer;
     }
-    
+
     :hover {
       text-decoration: underline;
     }
@@ -47,15 +47,15 @@ form {
   }
 
   .error {
-    color: #FF6D4C;
-    border-color: #FF6D4C;
+    color: #ff6d4c;
+    border-color: #ff6d4c;
   }
 
   .error-message {
     padding: 10px 0px;
     background-color: rgba(255, 109, 76, 0.15);
     border-radius: 10px;
-    color: #FF6D4C;
+    color: #ff6d4c;
     margin-bottom: 20px;
     transition: display 1s;
   }
@@ -89,7 +89,6 @@ button {
     margin-bottom: 0px;
   }
 
-
   .additional {
     font-size: 16px;
   }
@@ -118,10 +117,11 @@ $containerHeight: 934px;
 
 .cross {
   position: absolute;
-  top: 3.75%;
-  left: 91.28%;
-  font-size: 20px;
-  color: #313c3e;
+  top: 6.75%;
+  left: 90.28%;
+  color: #b7b6b6;
+  font-size: 30px;
+  font-weight: 600;
   transform: translate(0%, -50%);
 }
 
@@ -162,6 +162,6 @@ $containerHeight: 934px;
 }
 
 .footer-link {
-  color:#5C50E0;
+  color: #5c50e0;
   cursor: pointer;
 }
