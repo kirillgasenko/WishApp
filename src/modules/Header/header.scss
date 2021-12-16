@@ -6,19 +6,25 @@
   align-items: center;
   position: fixed;
   width: 77vw;
-  left: 214px;
-  padding: 20px 70px;
+  left: 202px;
+  padding: 20px 30px;
   height: 8vh;
 }
 
 .search-container {
   position: relative;
   display: flex;
-  margin-left: 5%;
-  width: 150px;
-  height: 36px;
-  border: 2px solid grey;
-  border-radius: 18px;
+  width: 300px;
+  height: 16px;
+  border: 2px solid rgba(49, 60, 62, 0.05);
+  padding: 18px 20px;
+  font-size: 12px;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .search-icon {
@@ -31,21 +37,18 @@
 }
 
 .search-input {
-  width: 78%;
-  height: 96%;
+  text-align: center;
+  width: inherit;
   border: none;
   border-radius: 18px;
   outline-width: 0;
-  left: 0;
-  top: 0;
-  position: absolute;
-  padding-left: 30px;
 }
 
 .icon-row {
   display: flex;
   justify-content: space-between;
-  min-width: 84px;
+  min-width: 88px;
+  margin-left: 40px;
 }
 
 .my-wishes {
