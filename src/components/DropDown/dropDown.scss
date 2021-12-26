@@ -1,0 +1,39 @@
+.select {
+  position: relative;
+}
+
+.select select {
+  display: flex;
+  width: 298px;
+  height: 41px;
+  padding-left: 16px;
+  background-color: #f1f5ff;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: url("../../assets//locationMark.svg");
+  font-family: inherit;
+  font-size: 14px;
+  color: rgba(32, 45, 48, 0.65);
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  margin-right: 16px;
+}
+
+.select:after {
+  content: "";
+  display: block;
+  border: none;
+  position: absolute;
+  top: 50%;
+  left: 270px;
+  z-index: 1;
+  margin-top: -10px;
+  content: url("../../assets//locationMark.svg");
+  pointer-events: none;
+}
+
+.select select:focus {
+  outline: none;
+}

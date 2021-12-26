@@ -8,7 +8,7 @@ import {
   SIGN_UP_TYPE,
   NEW_PASS_TYPE,
 } from "./constants";
-import { DataInputComponent } from "./DataInputComponent";
+import { DataInputComponent } from "./dataInputComponent";
 import { LogFooter } from "./LogFooter";
 import { changeBoxType } from "./redux/reducer";
 import { useAuth } from "./redux/selectors";

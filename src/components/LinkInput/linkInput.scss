@@ -1,0 +1,35 @@
+.wrapperLinkInput {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.searchLink {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  top: 28px;
+  right: 15px;
+}
+
+.linkInput {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  height: 41px;
+  background-color: #f1f5ff;
+  padding: 0 0 0 14px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-family: inherit;
+  color: rgba(32, 45, 48, 0.65);
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  margin: 16px 0px 49px;
+  padding-right: 50px;
+}
+
+.linkInput:focus-visible {
+  outline: none;
+}

@@ -1,0 +1,38 @@
+.wrapperTextArea {
+  width: 512px;
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.textArea {
+  box-sizing: border-box;
+  height: 138px;
+  width: inherit;
+  resize: none;
+  background-color: #f1f5ff;
+  border-radius: 20px;
+  padding: 16px 14px 25px;
+  border: none;
+  font-family: ManRope;
+  font-weight: 600;
+  color: #313C3E;
+
+}
+
+.textArea:focus {
+  background-color: #5c50e033;
+  border: 1px solid rgba(92, 80, 224, 0.2);
+}
+
+.textArea:focus-visible {
+  outline: none;
+}
+
+.descriptionTextArea {
+  display: flex;
+  justify-content: space-between;
+  color: #313c3e;
+  font-weight: 700;
+  width: 100%;
+  position: absolute;
+}

@@ -1,10 +1,12 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from './modules/LoginPage/redux/reducer';
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import { authReducer } from "./modules/LoginPage/redux/reducer";
+import { wishesReducer } from "./components/Modal/redux/reducer";
 
 export const store = configureStore({
   reducer: {
     authentication: authReducer,
+    wishes: wishesReducer,
   },
 });
 

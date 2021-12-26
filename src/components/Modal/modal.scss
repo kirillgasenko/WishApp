@@ -1,0 +1,101 @@
+@font-face {
+  font-family: ManRope;
+  src: url(../../Manrope/static/Manrope-Regular.ttf);
+}
+
+.modal {
+  box-sizing: border-box;
+  width: 922px;
+  background: #fafbfe;
+  padding: 36px 45px 46px 45px;
+  border-radius: 45px;
+  height: 701px;
+}
+
+.wrapperModal {
+  background-color: #313c3e40;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 214px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperCheckBox {
+  margin-right: 48px;
+}
+
+.groupCheckBox {
+  display: flex;
+}
+
+.wrapperHaderModal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.closeButton {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.descriptionImage {
+  display: inline-block;
+  width: 185px;
+  color: white;
+}
+
+.greenButton {
+  display: flex;
+  align-items: center;
+  height: 35px;
+  width: 169px;
+  border-radius: 50px;
+  background: #ffffff;
+  border: none;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.chooseBoard {
+  display: inline-block;
+  margin-left: 9px;
+  text-transform: uppercase;
+  color: #313c3e;
+  opacity: 0.5;
+}
+
+.mainContentModal {
+  display: flex;
+}
+
+.leftBlockContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 28px;
+}
+
+.rightlockContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.wrapperPrice {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+}
