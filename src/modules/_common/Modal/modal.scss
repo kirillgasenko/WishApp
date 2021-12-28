@@ -1,0 +1,21 @@
+.modal-content-container {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 25;
+}
+
+.no-display {
+  display: none;
+}
+
+.modal-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  height: 100%;
+  background-color: #00000073;
+}

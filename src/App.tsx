@@ -27,11 +27,11 @@ function App() {
             }}
           />
           <Route path="/home">
-            <div className="App">
+            <>
               <Sidebar />
               <Header />
               <ActivityContainer />
-            </div>
+            </>
           </Route>
           <Route path="/auth">
             <AuthContainer />
