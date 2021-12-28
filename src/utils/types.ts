@@ -1,7 +1,6 @@
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit"
 
 export type CommonResponse = {
-  error?: string;
   [key: string]: string | number | undefined;
 }
 

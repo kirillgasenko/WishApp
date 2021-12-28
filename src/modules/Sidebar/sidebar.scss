@@ -1,18 +1,18 @@
 .sidebar {
   position: fixed;
-  padding: 0 28px;
+  padding: 0 22px;
   top: 0;
   bottom: 0;
   left: 0;
   min-height: 100vh !important;
   width: 158px;
-  z-index: 100;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  z-index: 10;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 
 .style-wrapper {
   text-align: left;
-  background-color: #313C3E;
+  background-color: #313c3e;
 }
 
 .sidebar .nav-item {
@@ -23,15 +23,22 @@
 
 .nav-link {
   text-decoration: none;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.nav-item:hover > a {
-  color: #2FF0C2;
-}
+.nav-item {
+  &:hover {
+    background-color: #2e3839;
 
-.nav-item:hover {
-  background-color: #2E3839;
+    > a {
+      color: #2ff0c2;
+
+      svg {
+        filter: invert(62%) sepia(100%) saturate(300%) hue-rotate(115deg)
+          brightness(103%) contrast(99%);
+      }
+    }
+  }
 }
 
 .logo {
@@ -39,17 +46,33 @@
   vertical-align: sub;
 }
 
-.invite-block {
+.footer-block {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
   bottom: 5%;
-  float: top;
-  display: flex;
-  flex-flow: column wrap;
   color: #939393;
-  margin: 0 0 0 24px;
+  width: 146px;
+}
+
+.invite-block {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  background-color: rgba(32, 45, 48, 1);
+  max-width: 85px;
+  max-height: 85px;
+  padding: 24px 16px;
+  border-radius: 17px;
 }
 
 .bow-logo {
   padding-bottom: 14px;
+}
+
+.plus-button {
+  position: absolute;
+  left: 153px;
+  top: 76%;
 }

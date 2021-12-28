@@ -12,8 +12,11 @@ function repeatChar(char: string, repeats: number) {
   return str;
 }
 
+const MAX_NAME_LENGTH = 26;
+
 export const WishCard = (props: {imgSrc?: string, costLevel: number, name: string}) => {
   const { imgSrc, costLevel, name } = props;
+  const editedName = name.length < MAX_NAME_LENGTH ? name.slice(0,MAX_NAME_LENGTH) : name;
   const costStr = repeatChar('$', costLevel);
 
   return(
@@ -22,7 +25,7 @@ export const WishCard = (props: {imgSrc?: string, costLevel: number, name: strin
         <img src={imgSrc ?? wishPlug} alt='wish card' className={imgSrc ? 'card-image' : 'default-card-image'}/>
         <text className='cost-level'>{costStr}</text>
       </div>
-      <text className='card-description'>{name}</text>
+      <text className='card-description'>{editedName}</text>
     </div>
   );
 }
