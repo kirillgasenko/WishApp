@@ -13,13 +13,17 @@ import { ReactComponent as BowLogo } from "../../assets/bow.svg";
 import { ReactComponent as InviteText } from "../../assets/inviteText.svg";
 import { ReactComponent as SidebarToggle } from "../../assets/sidebarToggle.svg";
 import AddPlus from "./components/AddPlus";
+import Modal from "../_common/Modal";
+import { AuthContainer } from "../LoginPage/AuthContainer";
 
 const Side = () => {
   let history = useHistory();
 
   return (
     <div className="sidebar style-wrapper">
-      <SidebarHeader />
+      <Modal content={<AuthContainer />}>
+        <SidebarHeader />
+      </Modal>
       <Nav
         className="flex-column"
         activeKey="/home"

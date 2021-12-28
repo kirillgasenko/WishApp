@@ -58,9 +58,7 @@ function Modal({ toShow, children, content }: ModalProps): JSX.Element | null {
 
   return (
     <>
-      <div onClick={handleShow} style={{ position: "absolute", zIndex: 24 }}>
-        {children}
-      </div>
+      <div onClick={handleShow}>{children}</div>
       {isToShow &&
         ReactDOM.createPortal(
           <div className="modal">

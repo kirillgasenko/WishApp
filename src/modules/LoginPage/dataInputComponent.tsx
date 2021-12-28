@@ -129,7 +129,7 @@ function constructForm(
     Object.values(inputValues).every((value) => !!value);
 
   return (
-    <form>
+    <form className="auth-form">
       {error && (
         <div className="error-message">{constructData.errorMsg || error}</div>
       )}

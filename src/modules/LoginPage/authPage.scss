@@ -1,4 +1,4 @@
-form {
+form.auth-form {
   display: flex;
   flex-direction: column;
 
@@ -25,6 +25,7 @@ form {
 
   button {
     margin-top: 43px;
+    text-align: center;
   }
 
   .passQuestion {
@@ -58,6 +59,12 @@ form {
     color: #ff6d4c;
     margin-bottom: 20px;
     transition: display 1s;
+  }
+}
+
+.buttons-container {
+  button {
+    text-align: start;
   }
 }
 
