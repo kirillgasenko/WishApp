@@ -6,10 +6,15 @@ import giftlogo from "../../../assets/giftlogo.svg";
 import folderlogo from "../../../assets/folderlogo.svg";
 import calendarlogo from "../../../assets/calendarlogo.svg";
 
-const EllipseOption: React.FC<{ icon?: string; text?: string }> = ({
+type EllipseProps = {
+  icon?: string;
+  text?: string;
+};
+
+const EllipseOption = ({
   icon,
   text,
-}) => {
+}: EllipseProps) => {
   return (
     <button className="option-button">
       <img className="icon" src={icon} />
@@ -35,13 +40,13 @@ export default function AddPlus() {
       </div>
       {opened && (
         <div>
-          <div style={{ position: "relative", top: "-200px", right: "-5px" }}>
+          <div className='upper-item'>
             <EllipseOption icon={giftlogo} text="ЖЕЛАНИЕ" />
           </div>
-          <div style={{ position: "relative", top: "-225px", right: "-100px" }}>
+          <div className='middle-item'>
             <EllipseOption icon={folderlogo} text="ДОСКУ" />
           </div>
-          <div style={{ position: "relative", top: "-195px", right: "-90px" }}>
+          <div className='lower-item'>
             <EllipseOption icon={calendarlogo} text="СОБЫТИЕ" />
           </div>
         </div>
