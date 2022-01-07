@@ -23,17 +23,7 @@ export const ButtonAddPicture = ({
         onChange={handlerSendPicture}
       />
       <label htmlFor="raised-button-file">
-        {!selectedFile && (
-          <div className="addImage">
-            <div className="addImageText">
-              <img src={AddImage} alt="AddImage" />
-              <span className="descriptionImage">
-                Перетащите изображение сюда или нажмите{" "}
-              </span>
-            </div>
-          </div>
-        )}
-        {selectedFile && (
+        {selectedFile ? (
           <>
             <div className="previewImage">
               <img src={preview} />
@@ -46,6 +36,15 @@ export const ButtonAddPicture = ({
               </div>
             </div>
           </>
+        ) : (
+          <div className="addImage">
+            <div className="addImageText">
+              <img src={AddImage} alt="AddImage" />
+              <span className="descriptionImage">
+                Перетащите изображение сюда или нажмите{" "}
+              </span>
+            </div>
+          </div>
         )}
       </label>
     </>
