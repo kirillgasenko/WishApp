@@ -10,12 +10,14 @@ interface AuthState {
   type: AuthFormTypes;
   login: LogResponse;
   error: string;
+  isAuthorized: boolean;
 }
 
 const initialState: AuthState = {
   type: "LOGIN",
   login: {},
   error: "",
+  isAuthorized: false,
 };
 
 export const authSlice = createSlice({

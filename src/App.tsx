@@ -7,6 +7,7 @@ import { Header } from "./modules/Header/Header";
 import { ActivityContainer } from "./modules/ActivityContainer/ActivityContainer";
 import { useState } from "react";
 import { AuthContainer } from "./modules/LoginPage/AuthContainer";
+import Modal from "./modules/_common/Modal";
 
 function App() {
   const [authStatus, setAuthStatus] = useState(true);
@@ -31,6 +32,7 @@ function App() {
               <Sidebar />
               <Header />
               <ActivityContainer />
+              <Modal content={<AuthContainer />} toShow={true}></Modal>
             </>
           </Route>
           <Route path="/auth">

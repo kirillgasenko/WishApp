@@ -137,6 +137,11 @@ function constructForm(
         <input
           className={`${editOnce()} ${error && "input-warning"}`}
           name={elem.name}
+          type={
+            elem.name === "password" || elem.name === "repeatPassword"
+              ? "password"
+              : "text"
+          }
           placeholder={elem.placeholder || ""}
           onChange={changeInput}
         />
@@ -192,7 +197,6 @@ export const DataInputComponent = () => {
   const constructObject = selectConstructObject(type);
 
   function onSubmit(formData: any) {
-    console.log(formData);
     switch (type) {
       case LOG_IN_TYPE: {
         dispatch(logUser(formData));

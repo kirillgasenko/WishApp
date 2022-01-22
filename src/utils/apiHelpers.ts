@@ -1,11 +1,13 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
 import { RootStateOrAny } from "react-redux";
 import { CommonResponse } from "./types";
+import { getCookieValue } from "./functions";
 
 export const commonFetch = (
   method: string,
   url: string,
-  body?: Object | undefined
+  body?: Object | undefined,
+  auth?: boolean
 ): Promise<CommonResponse> => {
   return fetch("https://igiftudev-app.herokuapp.com" + url, {
     method,
@@ -15,12 +17,18 @@ export const commonFetch = (
     headers: {
       "Access-Control-Allow-Origin": "https://igiftudev-app.herokuapp.com",
       "Content-Type": "application/json",
+      "Cookie": getCookieValue("authKey") || '',
     },
     ...(body && { body: JSON.stringify(body) }),
   })
     .then((res) => {
+      console.log(res);
+      if (auth) {
+        const authKey = res.headers.get("Authorization");
+        authKey && (document.cookie = `authKey=${authKey}`);
+      }
       if (res.status === 204 && res.statusText === "No Content") return {};
-      else return res.json();
+      if (Object.keys(res).length) return res.json();
     })
     .catch((error) => error);
 };

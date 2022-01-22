@@ -14,7 +14,6 @@ function closureAddRemoveModal(): [Element, Function] {
     div,
     (toRemove?: boolean) => {
       if (toRemove) {
-        console.log("remove");
         div.remove();
       }
 
@@ -63,7 +62,7 @@ function Modal({ toShow, children, content }: ModalProps): JSX.Element | null {
         ReactDOM.createPortal(
           <div className="modal">
             <div className="modal-mask" onClick={handleClose} />
-            <div className="modal-content-container" onBlur={handleClose}>
+            <div className="modal-content-container">
               {content}
             </div>
           </div>,
