@@ -17,7 +17,7 @@ export const commonFetch = (
     headers: {
       "Access-Control-Allow-Origin": "https://igiftudev-app.herokuapp.com",
       "Content-Type": "application/json",
-      "Cookie": getCookieValue("authKey") || '',
+      "Authorization": getCookieValue("authKey") || '',
     },
     ...(body && { body: JSON.stringify(body) }),
   })
