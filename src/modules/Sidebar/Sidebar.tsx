@@ -70,5 +70,5 @@ const Side = () => {
   );
 };
 
-const Sidebar = withRouter(Side);
+const Sidebar = Side;
 export default Sidebar;

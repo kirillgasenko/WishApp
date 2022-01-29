@@ -2,6 +2,7 @@ import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
 import { RootStateOrAny } from "react-redux";
 import { CommonResponse } from "./types";
 import { getCookieValue } from "./functions";
+import { DEFAULT_LINK } from "./constants";
 
 export const commonFetch = (
   method: string,
@@ -9,15 +10,15 @@ export const commonFetch = (
   body?: Object | undefined,
   auth?: boolean
 ): Promise<CommonResponse> => {
-  return fetch("https://igiftudev-app.herokuapp.com" + url, {
+  return fetch(DEFAULT_LINK + url, {
     method,
     mode: "cors",
     cache: "no-cache",
     credentials: "same-origin",
     headers: {
-      "Access-Control-Allow-Origin": "https://igiftudev-app.herokuapp.com",
+      "Access-Control-Allow-Origin": DEFAULT_LINK,
       "Content-Type": "application/json",
-      "Authorization": getCookieValue("authKey") || '',
+      "Authorization": getCookieValue("authKey") || "",
     },
     ...(body && { body: JSON.stringify(body) }),
   })

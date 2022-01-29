@@ -16,27 +16,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => {
-              return authStatus ? (
-                <Redirect to="/home" />
-              ) : (
-                <Redirect to="/auth" />
-              );
-            }}
-          />
-          <Route path="/home">
-            <>
-              <Sidebar />
-              <Header />
-              <ActivityContainer />
-              <Modal content={<AuthContainer />} toShow={true}></Modal>
-            </>
-          </Route>
-          <Route path="/auth">
-            <AuthContainer />
+          <Route path="/">
+            <Sidebar />
+            <Header />
+            <ActivityContainer />
+            <Modal content={<AuthContainer />} toShow={true}/>
           </Route>
         </Switch>
       </BrowserRouter>
