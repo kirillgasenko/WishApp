@@ -72,7 +72,6 @@ function switcher() {
   let i = 0;
 
   return () => {
-    console.log(i);
     i = (i + 1) % types.length;
     return types[i];
   };

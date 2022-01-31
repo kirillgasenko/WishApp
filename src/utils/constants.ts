@@ -1,0 +1,1 @@
+export const DEFAULT_LINK = "https://igiftudev-app.herokuapp.com";

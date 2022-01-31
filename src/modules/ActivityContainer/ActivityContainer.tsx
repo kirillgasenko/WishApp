@@ -1,18 +1,28 @@
-import React from 'react';
-import { WishCard } from './components/WishCard';
+import React from "react";
+import "./container.scss";
+import {
+  useRouteMatch,
+  Route,
+  Switch,
+} from "react-router-dom";
+import { CardContainer } from "../CardFlow/CardContainer";
 
-import wishTest from '../../assets/wishTest.svg';
+export const ActivityContainer = function () {
+  const { path } = useRouteMatch();
+  console.log(path);
 
-import './container.scss';
-
-export const ActivityContainer = function() {
-  return(
-    <div className='activity-container'>
-      <div className='card-container'>
-        <WishCard costLevel={1} name="default image"/>
-        <WishCard imgSrc={wishTest} costLevel={3} name="with image and loooooooooooong text"/>
-      </div>
-
+  return (
+    <div className="activity-container">
+      <Switch>
+        <Route path={`${path}wishes`}>
+          <>
+            <CardContainer />
+          </>
+        </Route>
+        <Route path={`${path}about`}>Actions</Route>
+        <Route path={`${path}dashboard`}>Dashboard</Route>
+        <Route path={`${path}blog`}>Blog</Route>
+      </Switch>
     </div>
   );
 };

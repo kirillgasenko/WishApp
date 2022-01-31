@@ -7,6 +7,7 @@ import { Header } from "./modules/Header/Header";
 import { ActivityContainer } from "./modules/ActivityContainer/ActivityContainer";
 import { useState } from "react";
 import { AuthContainer } from "./modules/LoginPage/AuthContainer";
+import Modal from "./modules/_common/Modal";
 
 function App() {
   const [authStatus, setAuthStatus] = useState(true);
@@ -15,26 +16,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => {
-              return authStatus ? (
-                <Redirect to="/home" />
-              ) : (
-                <Redirect to="/auth" />
-              );
-            }}
-          />
-          <Route path="/home">
-            <>
-              <Sidebar />
-              <Header />
-              <ActivityContainer />
-            </>
-          </Route>
-          <Route path="/auth">
-            <AuthContainer />
+          <Route path="/">
+            <Sidebar />
+            <Header />
+            <ActivityContainer />
+            <Modal content={<AuthContainer />} toShow={true}/>
           </Route>
         </Switch>
       </BrowserRouter>
