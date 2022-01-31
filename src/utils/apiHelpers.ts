@@ -18,18 +18,15 @@ export const commonFetch = (
     headers: {
       "Access-Control-Allow-Origin": DEFAULT_LINK,
       "Content-Type": "application/json",
+      'Accept': 'application/json',
       "Authorization": getCookieValue("authKey") || "",
     },
     ...(body && { body: JSON.stringify(body) }),
   })
     .then((res) => {
       console.log(res);
-      if (auth) {
-        const authKey = res.headers.get("Authorization");
-        authKey && (document.cookie = `authKey=${authKey}`);
-      }
       if (res.status === 204 && res.statusText === "No Content") return {};
-      if (Object.keys(res).length) return res.json();
+      return res.json().then((json) => json);
     })
     .catch((error) => error);
 };

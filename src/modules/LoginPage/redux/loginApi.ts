@@ -3,16 +3,15 @@ import { CommonResponse } from "../../../utils/types";
 import { DEFAULT_LINK } from "../../../utils/constants";
 
 export type AuthBody = {
-  email: string,
-  password: string,
-  [key: string]: any,
-}
+  email: string;
+  password: string;
+  [key: string]: any;
+};
 
 export const regRequest = (body: any) =>
-  commonFetch("POST", "/user/registration", body, true);
+  authFetch("POST", "/user/registration", body);
 
-export const logRequest = (body: any) =>
-  commonFetch("POST", "/user/login", body, true);
+export const logRequest = (body: any) => authFetch("POST", "/user/login", body);
 
 export const newPassRequest = (body: any) =>
   commonFetch("POST", "/user/password", body);
@@ -22,7 +21,7 @@ export const updateRequest = () => commonFetch("POST", "/user/password/update");
 export const authFetch = (
   method: string,
   url: string,
-  body?: AuthBody | undefined,
+  body?: AuthBody | undefined
 ): Promise<CommonResponse> => {
   return fetch(DEFAULT_LINK + url, {
     method,
@@ -31,14 +30,15 @@ export const authFetch = (
     credentials: "same-origin",
     headers: {
       "Access-Control-Allow-Origin": DEFAULT_LINK,
-      "Content-Type": "application/json",
+      "Accept": "*/*",
+      'Content-Type': 'application/json',
     },
     ...(body && { body: JSON.stringify(body) }),
   })
     .then((res) => {
       const authKey = res.headers.get("Authorization");
       authKey && (document.cookie = `authKey=${authKey}`);
-      if (Object.keys(res).length) return res.json();
+      return res.json().then((json) => {console.log(json); return json});
     })
     .catch((error) => error);
 };
