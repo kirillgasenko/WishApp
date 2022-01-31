@@ -14,25 +14,16 @@ import { ButtonAddPicture } from "../ButtonAddPicture/ButtonAddPicture";
 import { useHookModal } from "./hooks/useHookModal";
 import { NameField } from "./constants/constants";
 
-type Props = {
-  handlerClose: () => void;
-};
+// type Props = {
+//   handlerClose: () => void;
+// };
 
 export const ButtonWrapper = styled(Button)`
   width: 296px;
   text-align: center;
 `;
 
-export const Modal = ({ handlerClose }: Props) => {
-  const rootModal = useRef<any>(null);
-
-  useEffect(() => {
-    const onClick = (e: any) =>
-      rootModal.current?.contains(e.target) || handlerClose();
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, [handlerClose]);
-
+export const ModalCreateWish = () => {
   const { values, handlers } = useHookModal();
   const {
     preview,
@@ -57,8 +48,8 @@ export const Modal = ({ handlerClose }: Props) => {
   } = handlers;
 
   return (
-    <form onSubmit={handlerSubmitModal} className="wrapperModal">
-      <div className="modal" ref={rootModal}>
+    <form onSubmit={handlerSubmitModal}>
+      <div className="modal">
         <div className="wrapperHaderModal">
           <div className="groupCheckBox">
             <div className="wrapperCheckBox">
@@ -80,7 +71,7 @@ export const Modal = ({ handlerClose }: Props) => {
               />
             </div>
           </div>
-          <button className="closeButton" onClick={handlerClose}>
+          <button className="closeButton">
             <img src={Close} alt="Close" />
           </button>
         </div>

@@ -22,6 +22,9 @@ export const wishSlice = createSlice({
     sendWish: (state, action: PayloadAction<WishesResponse>) => {
       state.wishes = action.payload;
     },
+    receiveWish: (state, action: PayloadAction<WishesResponse>) => {
+      state.wishes = action.payload;
+    },
     saveError: (state, { payload }) => {
       state.error = payload;
     },

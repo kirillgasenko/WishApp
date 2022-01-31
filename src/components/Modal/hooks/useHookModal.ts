@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ApiNameFiled } from "../constants/constants";
-import { postUniqueWishes } from "../redux/middleware";
+import { getUniqueWishes, postUniqueWishes } from "../redux/middleware";
 
 export const useHookModal = () => {
   const [selectedFile, setSelectedFile] = useState();
@@ -72,7 +72,6 @@ export const useHookModal = () => {
     setFormValues({
       ...checkBoxvalues,
       name: titleWish?.title,
-      id: 2,
       lastModifiedDate: new Date().getTime(),
       details: titleWish?.describe,
       image: {
@@ -89,6 +88,7 @@ export const useHookModal = () => {
     event.preventDefault();
     console.log(formValues);
     dispatch(postUniqueWishes(formValues));
+    dispatch(getUniqueWishes());
   };
 
   return {

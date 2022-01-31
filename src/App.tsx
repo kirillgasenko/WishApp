@@ -2,12 +2,7 @@ import React from "react";
 
 import "./App.scss";
 import Sidebar from "./modules/Sidebar/Sidebar";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { Header } from "./modules/Header/Header";
 import { ActivityContainer } from "./modules/ActivityContainer/ActivityContainer";
 import { useState } from "react";
@@ -22,11 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Sidebar />
-        {/* {authStatus &&  <Sidebar />} можно по пробывать так когда будет норм логин работать
-        {authStatus &&  <Header />} */}
-        <Header />
+      <BrowserRouter>
         <Switch>
           <Route path="/">
             <Sidebar />
@@ -35,7 +26,7 @@ function App() {
             <Modal content={<AuthContainer />} toShow={true}/>
           </Route>
         </Switch>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }
