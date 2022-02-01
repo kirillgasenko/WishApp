@@ -20,4 +20,5 @@ export type WishesResponse = {
     currencyCode?: number;
     value?: number;
   };
+  content?: any;
 };

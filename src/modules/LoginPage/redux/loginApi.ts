@@ -30,15 +30,20 @@ export const authFetch = (
     credentials: "same-origin",
     headers: {
       "Access-Control-Allow-Origin": DEFAULT_LINK,
-      "Accept": "*/*",
-      'Content-Type': 'application/json',
+      Accept: "*/*",
+      "Content-Type": "application/json",
     },
     ...(body && { body: JSON.stringify(body) }),
   })
     .then((res) => {
       const authKey = res.headers.get("Authorization");
       authKey && (document.cookie = `authKey=${authKey}`);
-      return res.json().then((json) => {console.log(json); return json});
+      return res.json().then((json) => {
+        if (json.userId) {
+          sessionStorage.setItem("userId", json.userId);
+        }
+        return json;
+      });
     })
     .catch((error) => error);
 };

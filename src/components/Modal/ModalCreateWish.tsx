@@ -1,5 +1,4 @@
 import "./modal.scss";
-import { useEffect, useRef } from "react";
 import { CheckBox } from "../Checkbox/CheckBox";
 import Close from "../../assets/close.svg";
 import GreenAddImage from "../../assets/greenAddButton.svg";
@@ -13,10 +12,6 @@ import { ButtonAddPicture } from "../ButtonAddPicture/ButtonAddPicture";
 
 import { useHookModal } from "./hooks/useHookModal";
 import { NameField } from "./constants/constants";
-
-// type Props = {
-//   handlerClose: () => void;
-// };
 
 export const ButtonWrapper = styled(Button)`
   width: 296px;
@@ -71,9 +66,9 @@ export const ModalCreateWish = () => {
               />
             </div>
           </div>
-          <button className="closeButton">
+          <div className="closeButton">
             <img src={Close} alt="Close" />
-          </button>
+          </div>
         </div>
         <div className="mainContentModal">
           <div className="leftBlockContent">

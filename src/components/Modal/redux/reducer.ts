@@ -34,8 +34,18 @@ export const wishSlice = createSlice({
   },
 });
 
-export const { sendWish, clearForm, saveError } = wishSlice.actions;
+export const {
+  sendWish,
+  receiveWish,
+  clearForm,
+  saveError,
+} = wishSlice.actions;
 
 export const wishesReducer = wishSlice.reducer;
 
 export const getFormType = (state: RootState) => state.wishes.type;
+
+export const receivedDate = (state: RootState) => {
+  console.log(state);
+  return state;
+};

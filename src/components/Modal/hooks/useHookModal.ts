@@ -2,6 +2,8 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ApiNameFiled } from "../constants/constants";
 import { getUniqueWishes, postUniqueWishes } from "../redux/middleware";
+import { receivedDate } from "../redux/reducer";
+import { useWish } from "../redux/selectors";
 
 export const useHookModal = () => {
   const [selectedFile, setSelectedFile] = useState();
@@ -16,7 +18,7 @@ export const useHookModal = () => {
     [key: string]: boolean;
   }>();
   const dispatch = useDispatch();
-  console.log(selectedFile);
+
   useEffect(() => {
     if (!selectedFile) {
       setPreview(undefined);
@@ -88,7 +90,6 @@ export const useHookModal = () => {
     event.preventDefault();
     console.log(formValues);
     dispatch(postUniqueWishes(formValues));
-    dispatch(getUniqueWishes());
   };
 
   return {
